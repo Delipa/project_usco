@@ -1,40 +1,38 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Root from './routes/Root'
 import ErrorPage from './routes/ErrorPage'
 
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Index from './pages/Index'
 import Login from './pages/Authentication/Login'
 import Register from './pages/Authentication/Register'
+import './index.css'
+import Root from './routes/Root'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root/>,
-    errorElement: <ErrorPage/>,
+    element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: 'index',
-        element: <Index/>
+        element: <Index />
       }
     ]
   },
   {
     path: 'login',
-    element: <Login/>
+    element: <Login />
   },
   {
     path: 'register',
-    element: <Register/>
+    element: <Register />
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 )

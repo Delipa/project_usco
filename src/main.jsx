@@ -8,6 +8,7 @@ import Login from './pages/Authentication/Login'
 import Register from './pages/Authentication/Register'
 import './index.css'
 import Root from './routes/Root'
+import Users from './pages/Users'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: 'index',
         element: <Index />
+      },
+      {
+        path: 'users',
+        element: <Users />
       }
     ]
   },

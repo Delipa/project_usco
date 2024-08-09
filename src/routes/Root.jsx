@@ -15,11 +15,11 @@ function Root () {
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         >
           <div className="flex lg:flex-1">
-              <img
-                src="https://www.usco.edu.co/imagen-institucional/favicon.ico"
-                alt="USCO"
-                className="h-8 w-auto"
-              />
+            <img
+              src="https://www.usco.edu.co/imagen-institucional/favicon.ico"
+              alt="USCO"
+              className="h-8 w-auto"
+            />
           </div>
           <div className="flex lg:hidden">
             <button
@@ -32,12 +32,39 @@ function Root () {
             </button>
           </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-              <Link to={'/index'} className="text-sm font-semibold leading-6 text-gray-900">Inicio</Link>
-              <Link to={'/users'} className="text-sm font-semibold leading-6 text-gray-900">Usuarios</Link>
+            <Link
+              to={'/index'}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Inicio
+            </Link>
+            <Link
+              to={'/users'}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Usuarios
+            </Link>
+            <Link
+              to={'/createUser'}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Crear usuario
+            </Link>
+            <Link
+              to={'/createProject'}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Crear proyecto
+            </Link>
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <Link to={'/login'} className="text-sm font-semibold leading-6 text-gray-900">Iniciar sesión</Link>{' '}
-              <span aria-hidden="true">&rarr;</span>
+            <Link
+              to={'/login'}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Iniciar sesión
+            </Link>{' '}
+            <span aria-hidden="true">&rarr;</span>
           </div>
         </nav>
         <Dialog
@@ -48,11 +75,11 @@ function Root () {
           <div className="fixed inset-0 z-10" />
           <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-                <img
-                  src="https://www.usco.edu.co/imagen-institucional/favicon.ico"
-                  alt="USCO"
-                  className="h-8 w-auto"
-                />
+              <img
+                src="https://www.usco.edu.co/imagen-institucional/favicon.ico"
+                alt="USCO"
+                className="h-8 w-auto"
+              />
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
@@ -65,11 +92,38 @@ function Root () {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                    <Link to={'/index'} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Inicio</Link>
-                    <Link to={'/users'} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Usuarios</Link>
+                  <Link
+                    to={'/index'}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Inicio
+                  </Link>
+                  <Link
+                    to={'/users'}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Usuarios
+                  </Link>
+                  <Link
+                    to={'/createUser'}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Crear usuario
+                  </Link>
+                  <Link
+                    to={'/createProject'}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Crear proyecto
+                  </Link>
                 </div>
                 <div className="py-6">
-                    <Link to={'/login'} className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Iniciar sesión</Link>
+                  <Link
+                    to={'/login'}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Iniciar sesión
+                  </Link>
                 </div>
               </div>
             </div>

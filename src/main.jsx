@@ -9,6 +9,8 @@ import Register from './pages/Authentication/Register'
 import './index.css'
 import Root from './routes/Root'
 import Users from './pages/Users'
+import CreateUser from './pages/CreateUser'
+import CreateProject from './pages/CreateProject'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: 'users',
         element: <Users />
+      },
+      {
+        path: 'createUser',
+        element: <CreateUser />
+      },
+      {
+        path: 'createProject',
+        element: <CreateProject />
       }
     ]
   },

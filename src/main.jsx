@@ -3,47 +3,32 @@ import ReactDOM from 'react-dom/client'
 import ErrorPage from './routes/ErrorPage'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Index from './pages/Index'
-import Login from './pages/Authentication/Login'
-import Register from './pages/Authentication/Register'
 import './index.css'
 import Root from './routes/Root'
-import Users from './pages/Users'
-import CreateUser from './pages/CreateUser'
-import CreateProject from './pages/CreateProject'
+import CreateProject from './pages/createProject/CreateProject'
+import Projects from './pages/projects/Projects'
+import DetailProject from './pages/detailProject/DetailProject'
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/project',
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'index',
-        element: <Index />
+        path: '',
+        element: <Projects />
       },
       {
-        path: 'users',
-        element: <Users />
-      },
-      {
-        path: 'createUser',
-        element: <CreateUser />
-      },
-      {
-        path: 'createProject',
+        path: 'create',
         element: <CreateProject />
-      }
+      },
+      {
+        path: 'detail/:id',
+        element: <DetailProject />
+      },
     ]
   },
-  {
-    path: 'login',
-    element: <Login />
-  },
-  {
-    path: 'register',
-    element: <Register />
-  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

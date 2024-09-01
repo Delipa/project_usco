@@ -4,7 +4,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { Outlet, Link } from 'react-router-dom'
 
-function Root () {
+import rootData from '../utils/constants/root'
+
+function Root() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -32,30 +34,17 @@ function Root () {
             </button>
           </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-            <Link
-              to={'/index'}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Inicio
-            </Link>
-            <Link
-              to={'/users'}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Usuarios
-            </Link>
-            <Link
-              to={'/createUser'}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Crear usuario
-            </Link>
-            <Link
-              to={'/createProject'}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Crear proyecto
-            </Link>
+            {
+              rootData.map((element, index) =>
+                <Link
+                  key={index}
+                  to={element.to}
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  {element.label}
+                </Link>
+              )
+            }
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link
@@ -92,30 +81,17 @@ function Root () {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  <Link
-                    to={'/index'}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Inicio
-                  </Link>
-                  <Link
-                    to={'/users'}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Usuarios
-                  </Link>
-                  <Link
-                    to={'/createUser'}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Crear usuario
-                  </Link>
-                  <Link
-                    to={'/createProject'}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Crear proyecto
-                  </Link>
+                  {
+                    rootData.map((element, index) =>
+                      <Link
+                        key={index}
+                        to={element.to}
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        {element.label}
+                      </Link>
+                    )
+                  }
                 </div>
                 <div className="py-6">
                   <Link

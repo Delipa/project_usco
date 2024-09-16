@@ -13,6 +13,7 @@ function DetailProject() {
     const [comments, setComments] = useState([])
     const [urlDownoload, setUrlDownoload] = useState("")
     const [formData, setFormData] = useState(null)
+    const [formSelectData, setFormSelectData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const navigate = useNavigate()
@@ -39,6 +40,8 @@ function DetailProject() {
         setFormData(dataToForm)
         const url = await getFile(`${id}/${response.projectFile}`)
         setUrlDownoload(url)
+        const responseFormSelectData = await getDocument("paremetros", "k2yOmcugG1SWVJMhaP3j")
+        setFormSelectData(responseFormSelectData ?? {})
         setIsLoading(false)
     }
 
@@ -88,9 +91,9 @@ function DetailProject() {
 
     return (
         <div className="flex justify-center">
-            {formData != null ? (
+            {formData != null && formSelectData != null ? (
                 <div className='mb-10'>
-                    <Form formData={formData} onSubmit={onSubmit} isLoading={isLoading} submitButtonText='Actualizar' />
+                    <Form formData={formData} selectOptions={formSelectData ?? {}} onSubmit={onSubmit} isLoading={isLoading} submitButtonText='Actualizar' />
                     <div>
                         {comments.map((comment, index) => (
                             <article key={index} className="flex max-w-xl flex-col items-start justify-between my-10 pb-5 border-b border-gray-300 my-4">

@@ -9,9 +9,8 @@ const formCreateProjectData = [
     },
     {
         label: "Descripción del proyecto",
-        type: "text",
+        type: "textarea",
         id: "projectDescription",
-        showColumn: true,
         required: true
     },
     {

@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
-function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = false, submitButtonText = "Crear" }) {
-
+function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = false, submitButtonText = "Crear", styleFullInput = false, title = "" }) {
     const [file, setFile] = useState(null)
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: getInitialValues(),
         onSubmit: values => {
             onSubmit(values, file, formik)
         },
-    });
+    })
 
     function getInitialValues() {
         const initialValues = {}
@@ -19,6 +20,10 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
         }
         )
         return initialValues
+    }
+
+    function onPressCancel() {
+        navigate('/home')
     }
 
     function getInput(element) {
@@ -31,6 +36,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                         onChange={formik.handleChange}
                         value={formik.values[element.id]}
                         required={element.required}
+                        rows={element.rows ?? 2}
                         className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                     />
                 );
@@ -88,10 +94,11 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
 
     return (
         <form onSubmit={formik.handleSubmit}>
+            <h2 className="text-xl font-bold leading-7 text-primary">{title}</h2>
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12">
                 {
                     formData.map((element) =>
-                        <div className="sm:col-span-6" key={element.id}>
+                        <div className={styleFullInput ? "sm:col-span-12" : "sm:col-span-6"} key={element.id}>
                             <label htmlFor={element.id} className="block text-sm font-medium leading-6 text-gray-900">
                                 {element.label}
                             </label>
@@ -103,7 +110,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                 }
             </div>
             <div className="my-12 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+                <button onClick={() => onPressCancel()} type="button" className="text-sm font-semibold leading-6 text-gray-900">
                     Cancelar
                 </button>
                 <button

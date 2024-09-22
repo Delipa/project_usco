@@ -37,7 +37,7 @@ function CreateProject() {
             <div>
                 {
                     formSelectData != null ? (
-                        <Form formData={formCreateProjectData} selectOptions={formSelectData} onSubmit={onSubmit} isLoading={isLoading} />
+                        <Form formData={formCreateProjectData} selectOptions={formSelectData} onSubmit={onSubmit} isLoading={isLoading} title="Nuevo proyecto" />
                     ) : (
                         <h1>Cargando...</h1>
                     )

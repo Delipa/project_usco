@@ -8,27 +8,80 @@ import Root from './routes/Root'
 import CreateProject from './pages/createProject/CreateProject'
 import Projects from './pages/projects/Projects'
 import DetailProject from './pages/detailProject/DetailProject'
+import Login from './pages/login/Login'
+import Register from './pages/register/Register'
+import PrivateRoute from './routes/PrivateRoute'
+import PublicRoute from './routes/PublicRoute'
+import Home from './pages/home/Home'
+import Params from './pages/params/Params'
 
 const router = createBrowserRouter([
   {
-    path: '/project',
+    path: '*',
+    element: <ErrorPage />
+  },
+  {
+    path: '/',
     element: <Root />,
-    errorElement: <ErrorPage />,
     children: [
       {
-        path: '',
-        element: <Projects />
+        path: 'home',
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        )
       },
       {
-        path: 'create',
-        element: <CreateProject />
+        path: 'project',
+        element: (
+          <PrivateRoute>
+            <Projects />
+          </PrivateRoute>
+        )
       },
       {
-        path: 'detail/:id',
-        element: <DetailProject />
+        path: 'project/create',
+        element: (
+          <PrivateRoute>
+            <CreateProject />
+          </PrivateRoute>
+        )
       },
+      {
+        path: 'project/detail/:id',
+        element: (
+          <PrivateRoute>
+            <DetailProject />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'project/params',
+        element: (
+          <PrivateRoute>
+            <Params />
+          </PrivateRoute>
+        )
+      }
     ]
   },
+  {
+    path: '/login',
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    )
+  },
+  {
+    path: '/register',
+    element: (
+      <PublicRoute>
+        <Register />
+      </PublicRoute>
+    )
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

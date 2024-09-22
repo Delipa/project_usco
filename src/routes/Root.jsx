@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Dialog, DialogPanel, PopoverGroup } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -9,6 +10,12 @@ import rootData from '../utils/constants/root'
 function Root() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+
+  function logOut() {
+    localStorage.removeItem('userInfo')
+    navigate('/login')
+  }
 
   return (
     <>
@@ -21,7 +28,7 @@ function Root() {
             <img
               src="https://www.usco.edu.co/imagen-institucional/favicon.ico"
               alt="USCO"
-              className="h-8 w-auto"
+              className="h-12 w-auto"
             />
           </div>
           <div className="flex lg:hidden">
@@ -40,7 +47,7 @@ function Root() {
                 <Link
                   key={index}
                   to={element.to}
-                  className={`text-sm font-semibold leading-6 ${location.pathname === element.to ? 'text-primary' : 'text-gray-900'}`}
+                  className={`text-m font-semibold leading-6 ${location.pathname === element.to ? 'text-primary' : 'text-gray-900'}`}
                 >
                   {element.label}
                 </Link>
@@ -48,13 +55,12 @@ function Root() {
             }
           </PopoverGroup>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link
-              to={'/login'}
-              className="text-sm font-semibold leading-6 text-gray-900"
+            <button
+              onClick={() => logOut()}
+              className="text-m font-semibold leading-6 text-gray-900"
             >
-              {''}
-            </Link>{' '}
-            <span aria-hidden="true">&rarr;</span>
+              {'Cerrar sesión '}
+            </button>{' '}
           </div>
         </nav>
         <Dialog
@@ -95,12 +101,11 @@ function Root() {
                   }
                 </div>
                 <div className="py-6">
-                  <Link
-                    to={'/login'}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    {''}
-                  </Link>
+                  <button
+                    onClick={() => logOut()}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    {'Cerrar sesión '}
+                  </button>{' '}
                 </div>
               </div>
             </div>

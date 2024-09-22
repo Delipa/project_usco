@@ -14,6 +14,7 @@ import PrivateRoute from './routes/PrivateRoute'
 import PublicRoute from './routes/PublicRoute'
 import Home from './pages/home/Home'
 import Params from './pages/params/Params'
+import EditProject from './pages/editProject/EditProject'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <DetailProject />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'project/edit/:id',
+        element: (
+          <PrivateRoute>
+            <EditProject />
           </PrivateRoute>
         )
       },

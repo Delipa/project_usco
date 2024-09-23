@@ -11,7 +11,15 @@ function Params() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        getInitialData()
+        const storedUserInfo = localStorage.getItem('userInfo')
+        if (storedUserInfo) {
+            const userRol = JSON.parse(storedUserInfo)?.rol
+            if (userRol === "admin") {
+                getInitialData()
+            } else {
+                navigate("/home")
+            }
+        }
     }, []);
 
     async function getInitialData() {

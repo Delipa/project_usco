@@ -13,7 +13,8 @@ const rootData = [
     },
     {
         to: "/project/params",
-        label: "Parámetros"
+        label: "Parámetros",
+        rol: "admin"
     }
 ]
 

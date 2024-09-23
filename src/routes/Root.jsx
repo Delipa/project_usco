@@ -17,6 +17,22 @@ function Root() {
     navigate('/login')
   }
 
+  function getRootData() {
+    const storedUserInfo = localStorage.getItem('userInfo')
+    var userRol = ""
+    if (storedUserInfo) {
+      userRol = JSON.parse(storedUserInfo)?.rol
+    }
+    const newRootData = rootData.filter(value => {
+      if (value.rol == null) {
+        return true
+      } else {
+        return value.rol === userRol
+      }
+    })
+    return newRootData
+  }
+
   return (
     <>
       <header className="bg-white">
@@ -43,7 +59,7 @@ function Root() {
           </div>
           <PopoverGroup className="hidden lg:flex lg:gap-x-12">
             {
-              rootData.map((element, index) =>
+              getRootData().map((element, index) =>
                 <Link
                   key={index}
                   to={element.to}

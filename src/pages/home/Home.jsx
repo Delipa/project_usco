@@ -16,13 +16,13 @@ const features = [
     },
     {
         name: 'Editar proyectos',
-        description: 'Permite la edición de proyectos y agregar comentarios al mismo',
+        description: 'Permite la edición de proyectos y agregar comentarios al mismo (Solo para usuarios administrador)',
         icon: PencilIcon,
         path: '/project'
     },
     {
         name: 'Parametros',
-        description: 'Permite configurar todos los parametros del formulario de creación de proyectos',
+        description: 'Permite configurar todos los parametros del formulario de creación de proyectos (Solo para usuarios administrador)',
         icon: ArrowPathIcon,
         path: '/project/params'
     }

@@ -13,7 +13,7 @@ function Register() {
         try {
             setIsLoading(true)
             const userInfo = await registerUser(email, password)
-            await postData("users", { email, rol: "admin", uid: userInfo?.user?.uid })
+            await postData("users", { email, rol: "user", uid: userInfo?.user?.uid })
             setIsLoading(false)
             navigate('/login')
         } catch (error) {

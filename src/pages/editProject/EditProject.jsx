@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react';
 import getDocument from '../../services/getDocument';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import * as Yup from 'yup'
 import formCreateProjectData from '../../utils/constants/formCreateProjectData';
 import Form from '../../components/Form';
 import updateDocument from '../../services/updateDocument';
-import getFile from '../../services/getFile';
-import deleteDocument from '../../services/deleteDocument';
 import postFile from '../../services/postFile';
+
+const SignupSchema = Yup.object().shape({
+    studentCellphone: Yup.string()
+        .length(10, 'El campo debe contener 10 digitos'),
+    studentId: Yup.string()
+        .matches(/^U/, 'El ID del estudiante debe empezar con la letra U')
+})
 
 function EditProject() {
     const [formData, setFormData] = useState(null)
@@ -51,7 +57,7 @@ function EditProject() {
         <div className="flex justify-center">
             {formData != null && formSelectData != null ? (
                 <div className='mb-10'>
-                    <Form formData={formData} selectOptions={formSelectData ?? {}} onSubmit={onSubmit} isLoading={isLoading} submitButtonText='Actualizar' />
+                    <Form formData={formData} selectOptions={formSelectData ?? {}} onSubmit={onSubmit} SignupSchema={SignupSchema} isLoading={isLoading} submitButtonText='Actualizar' />
                 </div>
             ) :
                 <h1>Cargando...</h1>

@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import * as Yup from 'yup'
 import Form from "../../components/Form"
 import formCreateProjectData from "../../utils/constants/formCreateProjectData"
 import postData from "../../services/postData"
 import postFile from "../../services/postFile"
-import getDocument from '../../services/getDocument';
+import getDocument from '../../services/getDocument'
+
+const SignupSchema = Yup.object().shape({
+    studentCellphone: Yup.string()
+        .length(10, 'El campo debe contener 10 digitos'),
+    studentId: Yup.string()
+        .matches(/^U/, 'El ID del estudiante debe empezar con la letra U')
+})
 
 function CreateProject() {
 
@@ -37,7 +45,7 @@ function CreateProject() {
             <div>
                 {
                     formSelectData != null ? (
-                        <Form formData={formCreateProjectData} selectOptions={formSelectData} onSubmit={onSubmit} isLoading={isLoading} title="Nuevo proyecto" />
+                        <Form formData={formCreateProjectData} selectOptions={formSelectData} onSubmit={onSubmit} isLoading={isLoading} SignupSchema={SignupSchema} title="Nuevo proyecto" />
                     ) : (
                         <h1>Cargando...</h1>
                     )

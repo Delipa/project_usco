@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup'
 
-function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = false, submitButtonText = "Crear", styleFullInput = false, title = "" }) {
+function Form({ formData = [], selectOptions = {}, onSubmit = {}, SignupSchema = Yup.object(), isLoading = false, submitButtonText = "Crear", styleFullInput = false, title = "" }) {
     const [file, setFile] = useState(null)
     const navigate = useNavigate()
 
@@ -11,6 +12,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
         onSubmit: values => {
             onSubmit(values, file, formik)
         },
+        validationSchema: SignupSchema
     })
 
     function getInitialValues() {
@@ -33,6 +35,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                     <textarea
                         id={element.id}
                         name={element.id}
+                        onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
                         value={formik.values[element.id]}
                         required={element.required}
@@ -47,6 +50,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                         id={element.id}
                         name={element.id}
                         type={element.type}
+                        onBlur={formik.handleBlur}
                         onChange={(event) => {
                             setFile(event.currentTarget.files[0]);
                             formik.setFieldValue(element.id, event.currentTarget.files[0].name);
@@ -61,6 +65,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                     <select
                         id={element.id}
                         name={element.id}
+                        onBlur={formik.handleBlur}
                         required={element.required}
                         onChange={formik.handleChange}
                         value={formik.values[element.id]}
@@ -84,6 +89,7 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                         name={element.id}
                         type={element.type}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         value={formik.values[element.id]}
                         required={element.required}
                         className="block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
@@ -104,6 +110,9 @@ function Form({ formData = [], selectOptions = {}, onSubmit = {}, isLoading = fa
                             </label>
                             <div className="mt-2">
                                 {getInput(element)}
+                                {formik.errors[element.id] && formik.touched[element.id] ? (
+                                    <div className='text-sm font-medium text-primary'>{formik.errors[element.id]}</div>
+                                ) : null}
                             </div>
                         </div>
                     )
